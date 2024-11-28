@@ -15,7 +15,6 @@ export class RegisterPage implements OnInit {
     username: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    userType: new FormControl('', [Validators.required]),
   });
 
 FirebaseSvc = inject(FirebaseService)

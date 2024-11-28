@@ -1,25 +1,11 @@
-<app-header title="Mis Productos"></app-header>
+<app-header title="Crear ventas"></app-header>
 
-<ion-content class="content-with-fab">
-  <ion-list>
-    <ion-item *ngFor="let product of products">
-      <ion-thumbnail slot="start">
-        <img [src]="product.image || 'assets/placeholder.png'" alt="Product Image" />
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.description }}</p>
-        <p><strong>Precio:</strong> ${{ product.price }}</p>
-        <p><strong>Cantidad:</strong> {{ product.quantity }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-button">
-    <ion-fab-button routerLink="/add-product" color="success">
-      <ion-icon name="add-circle-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+<ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button >
+    <ion-icon name = "add" (click)="addProduct()"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>
 
 <app-footer></app-footer>

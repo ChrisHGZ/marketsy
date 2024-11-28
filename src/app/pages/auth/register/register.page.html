@@ -37,16 +37,6 @@
           La contraseña debe tener al menos 6 caracteres
         </div>
       </div>
-      <ion-item>
-        <ion-label>Tipo de Usuario</ion-label>
-        <ion-select [formControl]="form.controls.userType" placeholder="Seleccionar">
-          <ion-select-option value="vendedor">Vendedor</ion-select-option>
-          <ion-select-option value="cliente">Cliente</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <div class="validators" *ngIf="form.controls.userType.errors && form.controls.userType.touched">
-        <div *ngIf="form.controls.userType.errors?.['required']">Seleccione un tipo de usuario</div>
-      </div>
       <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
         <ion-button class="submit" expand="block" mode="ios" [disabled]="form.invalid" (click)="submit()">
           Registrarse

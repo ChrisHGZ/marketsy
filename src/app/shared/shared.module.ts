@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 
 
@@ -14,7 +15,8 @@ import { FooterComponent } from './components/footer/footer.component';
     CustomInputComponent,
     LogoComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AddProductComponent
   ],
 
   exports: [
@@ -22,7 +24,8 @@ import { FooterComponent } from './components/footer/footer.component';
     LogoComponent,
     HeaderComponent,
     ReactiveFormsModule,
-    FooterComponent
+    FooterComponent,
+    AddProductComponent
   ],
 
   imports: [

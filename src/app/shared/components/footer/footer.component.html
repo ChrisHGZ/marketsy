@@ -1,19 +1,30 @@
 <ion-footer>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button (click)="navigateToMarketplace()">
-        <ion-icon slot="start" name="storefront-outline"></ion-icon>
-        Market
+    <ion-buttons slot="start" class="nav-buttons">
+      <ion-button class="nav-button" (click)="navigateToHome()">
+        <div>
+          <ion-icon name="home-outline"></ion-icon>
+          <span>Home</span>
+        </div>
       </ion-button>
-      <ion-button (click)="navigateToSeller()">
-        <ion-icon slot="start" name="people-outline"></ion-icon>
-        Seller
+      <ion-button class="nav-button" (click)="navigateToMarketplace()">
+        <div>
+          <ion-icon name="storefront-outline"></ion-icon>
+          <span>Market</span>
+        </div>
+      </ion-button>
+      <ion-button class="nav-button" (click)="navigateToSeller()">
+        <div>
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <span>Sell</span>
+        </div>
+      </ion-button>
+      <ion-button class="nav-button" (click)="navigateToProfile()">
+        <div>
+          <ion-icon name="person-outline"></ion-icon>
+          <span>Profile</span>
+        </div>
       </ion-button>
     </ion-buttons>
-    <div class="center-home-button">
-      <ion-button shape="round" (click)="navigateToHome()">
-        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
-      </ion-button>
-    </div>
   </ion-toolbar>
 </ion-footer>

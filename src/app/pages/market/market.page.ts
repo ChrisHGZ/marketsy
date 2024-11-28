@@ -1,36 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/products.models';
+import { User } from 'src/app/models/user.model';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-market',
   templateUrl: './market.page.html',
   styleUrls: ['./market.page.scss'],
 })
-export class MarketPage {
-  products: any[] = [
-    {
-      name: 'Producto 1',
-      description: 'Descripción del Producto 1',
-      image: 'assets/product1.jpg',
-      quantity: 10,
-      price: 100,
-    },
-    {
-      name: 'Producto 2',
-      description: 'Descripción del Producto 2',
-      image: 'assets/product2.jpg',
-      quantity: 5,
-      price: 200,
-    },
-  ]; // Lista de productos simulada
+export class MarketPage implements OnInit{
 
-  constructor() {}
 
-  buyProduct(product: any) {
-    if (product.quantity > 0) {
-      alert(`Has comprado: ${product.name}`);
-      product.quantity--;
-    } else {
-      alert('Este producto está agotado.');
-    }
+
+  firebaseSvc = inject(FirebaseService);
+  UtilsSvc = inject(UtilsService);
+
+  products: Product[] = [];
+
+  ngOnInit() {
+    this.getProducts();
   }
+  user(): User{
+    return this.UtilsSvc.getFromLocalStorage('user');
+  }
+
+  // obtener productos
+
+  getProducts() {
+    let path = `users/${this.user().uid}/products`;
+
+    let sub = this.firebaseSvc.getCollectionData(path).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.products = res;
+        sub.unsubscribe();  
+      }
+    })
+
+
+ }
 }

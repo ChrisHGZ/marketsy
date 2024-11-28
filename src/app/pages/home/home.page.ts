@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
+import { SellerPageModule } from '../seller/seller.module';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
+  firebaseSvc = inject(FirebaseService);
+  utilsSvc = inject(UtilsService);
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  addProduct() {
+    this.utilsSvc.presentModal({
+      component: SellerPageModule
+    })
+  }
 }
+

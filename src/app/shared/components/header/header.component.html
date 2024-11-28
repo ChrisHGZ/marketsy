@@ -1,15 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{title}}</ion-title>
+    <ion-buttons slot="start" *ngIf="!isAuthPage">
+
+    <ion-button (click)="dismissModal()" *ngIf="isModal">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+
+
+    </ion-buttons>
+    <div class="header-title">
+      <ion-title>{{ title }}</ion-title>
+    </div>
     <ion-buttons slot="end">
-      <ion-button *ngIf="!isAuthPage && !isLoggedIn" (click)="login()">
-        <ion-icon slot="start" name="log-in-outline"></ion-icon>
-        Iniciar Sesión
-      </ion-button>
-      <ion-button *ngIf="!isAuthPage && isLoggedIn" (click)="logout()">
-        <ion-icon slot="start" name="log-out-outline"></ion-icon>
-        Cerrar Sesión
-      </ion-button>
+
+
       <ion-button (click)="toggleDarkMode()">
         <ion-icon slot="icon-only" name="moon"></ion-icon>
       </ion-button>

@@ -1,17 +1,17 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { inject} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { AddProductComponent } from 'src/app/shared/components/add-product/add-product.component';
 
 @Component({
-  selector: 'seller-page',
-  templateUrl: './seller.page.html',
-  styleUrls: ['./seller.page.scss'],
+  selector: 'app-add-product',
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.scss'],
 })
-export class SellerPage implements OnInit {
+export class AddProductComponent  implements OnInit {
 
   form = new FormGroup({
     id: new FormControl(''),
@@ -23,29 +23,16 @@ export class SellerPage implements OnInit {
 
   FirebaseSvc = inject(FirebaseService)
   UtilsSvc = inject(UtilsService)
-
   user = {} as User
+
   ngOnInit() {
-
     this.user = this.UtilsSvc.getFromLocalStorage('user');
-
-  };
+  }
 
   async takeImage() {
     const dataUrl = (await this.UtilsSvc.takePicture('Imagen del Producto')).dataUrl;
     this.form.controls.image.setValue(dataUrl);
   }
-
-  addProduct() {
-    this.UtilsSvc.presentModal({
-      component: AddProductComponent
-    })
-  }
-
-  
-
-  
-
 
   async submit() {
     if (this.form.valid) {
@@ -58,10 +45,10 @@ export class SellerPage implements OnInit {
 
       //======== Upload Image y obtener url
 
-      let dataUrl = this.form.value.image;
+      /*let dataUrl = this.form.value.image;
       let imagePath = `${this.user.uid}/${Date.now()}`;
       let imageUrl = await this.FirebaseSvc.uploadImage(imagePath, dataUrl);
-      this.form.controls.image.setValue(imageUrl);
+      this.form.controls.image.setValue(imageUrl);*/
 
       delete this.form.value.id
 
@@ -95,5 +82,6 @@ export class SellerPage implements OnInit {
     }
   }
 
-  
+
+
 }

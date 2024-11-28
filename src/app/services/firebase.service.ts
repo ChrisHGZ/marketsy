@@ -3,7 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getFirestore, setDoc, doc, getDoc, addDoc, collection } from "firebase/firestore";
+import { getFirestore, setDoc, doc, getDoc, addDoc, collection, query} from "firebase/firestore";
+import { collectionData } from 'rxfire/firestore';
 import {AngularFireStorage}  from '@angular/fire/compat/storage';
 import { UtilsService } from './utils.service';
 import {getStorage, uploadString, ref, getDownloadURL} from 'firebase/storage'
@@ -62,4 +63,12 @@ export class FirebaseService {
       return getDownloadURL(ref(getStorage(),path))
     })
   }
+  //obtener documentos
+  getCollectionData(path: string, collectionQuery?: any) {
+    const ref = collection(getFirestore(), path);
+    return collectionData(query(ref, collectionQuery),{ idField: 'id' });
+
+  }
+
+
 }

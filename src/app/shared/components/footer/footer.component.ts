@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -12,25 +12,28 @@ export class FooterComponent  implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {}
-  login() {
-    this.router.navigate(['/auth']);
-  }
 
-  logout() {
-    this.isLoggedIn = false;
-    this.router.navigate(['/auth']);
+  activeTab: string = 'home';
+
+  navigateToHome() {
+    this.activeTab = 'home';
+    this.router.navigate(['/home']);
   }
 
   navigateToMarketplace() {
+    this.activeTab = 'market';
     this.router.navigate(['/market']);
   }
 
   navigateToSeller() {
+    this.activeTab = 'seller';
     this.router.navigate(['/seller']);
   }
 
-  navigateToHome() {
-    this.router.navigate(['/home']);
+  navigateToProfile() {
+    this.activeTab = 'profile';
+    this.router.navigate(['/profile']);
   }
+
 
 }

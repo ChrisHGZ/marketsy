@@ -3,30 +3,42 @@ ion-footer {
   bottom: 0;
   width: 100%;
   z-index: 1000;
+  background-color: #0056d2;
 }
 
 ion-toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
 }
 
-ion-button {
+.nav-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.nav-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
   --color: #fff;
 }
-ion-toolbar {
-  position: relative; /* Necesario para posicionar el botón centrado */
+
+.nav-button ion-icon {
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
-.center-home-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10; /* Asegura que el botón esté encima de otros elementos */
-}
-
-.center-home-button ion-button {
-  --background: var(--ion-color-secondary); /* Cambia el color del fondo */
-  --color: #fff; /* Cambia el color del ícono */
-  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para darle efecto */
+.nav-button span {
+  font-size: 14px;
+  color: #fff;
+  display: block;
+  margin-top: -4px;
+  text-align: center;
 }

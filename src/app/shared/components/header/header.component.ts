@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router, NavigationEnd, RouterEvent } from '@angular/router';  // Asegúrate de importar NavigationEnd y RouterEvent
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,14 @@ import { Router, NavigationEnd, RouterEvent } from '@angular/router';  // Asegú
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() title!: string;
 
-  isLoggedIn: boolean = false;
+  utilsSvc = inject(UtilsService)
+
+
+  @Input() title!: string;
+  @Input() isModal!: boolean;
+
+  isLoggedIn: boolean = true;
   isAuthPage: boolean = false;
 
   constructor(private router: Router) {}
@@ -18,15 +24,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.isAuthPage = ['/auth', '/register', '/forgot-password'].includes(this.router.url);
+        this.isAuthPage = ['/auth', '/register', '/profile', 'isModal' ].includes(this.router.url);
       }
     });
-  }
-
-  login() {
-    console.log('Redirigiendo a inicio de sesión...');
-    this.router.navigate(['/auth']);
-    this.isLoggedIn = true;
   }
 
   logout() {
@@ -37,5 +37,9 @@ export class HeaderComponent implements OnInit {
 
   toggleDarkMode() {
     document.body.classList.toggle('dark-theme');
+  }
+
+  dismissModal() {
+    this.utilsSvc.dismissModal();
   }
 }

@@ -1,0 +1,30 @@
+<app-header title="Profile"></app-header>
+
+<ion-content>
+  <div class="profile-container">
+    <!-- Profile Information -->
+    <ion-card class="profile-card">
+      <ion-avatar class="profile-avatar">
+        <img src="assets/icon/default.webp" alt="User profile">
+      </ion-avatar>
+      <ion-card-header>
+        <ion-card-title>
+          <span *ngIf="!isEditing">{{ user().username }}</span>
+          <ion-input *ngIf="isEditing"  placeholder="Name"></ion-input>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <span *ngIf="!isEditing">{{ user().email}}</span>
+        
+          <ion-input *ngIf="isEditing" placeholder="Email"></ion-input>
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+
+      <!-- Logout Button -->
+      <ion-button expand="full" color="danger" (click)="logout()">
+        Cerrar Sesión
+      </ion-button>
+    </div>
+</ion-content>
+
+<app-footer></app-footer>
